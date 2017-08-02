@@ -1,0 +1,12 @@
+RewriteEngine on
+Options +MultiViews
+Options +Indexes
+
+RewriteBase /media_fest/
+php_value auto_prepend_file "includes/functions.php"
+ErrorDocument 404 https://localhost/media_fest/404page
+RewriteCond %{REQUEST_FILENAME} !-d        
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME}.php -f    
+RewriteCond %{REQUEST_URI} ^(.+)\.php$     
+RewriteRule (.*)\.php$ /$1 [R=301,L]  
+RewriteRule ^(includes/) - [F,L,NC]
